@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lessons 9–10 — Data Compression and Terms of Use</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=JetBrains+Mono:wght@400;700&family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="page-header">
+  <div class="wrap">
+    <p class="eyebrow">Computing Technology · Designing for User Experience · Year 10</p>
+    <h1>Lessons 9–10 — Data Compression and Terms of Use</h1>
+    <p class="subhead">This page covers <strong>two periods</strong>. Period 1 (Sections 1–6) is about data compression. Period 2 (Sections 7–12) is about terms of use policies and EULAs. Work through it at your own pace — the page remembers where you got to, so you can stop at the end of Period 1 and pick up where you left off next lesson.</p>
+    <p class="subhead"><strong>Almost all of your worksheet is now on this page</strong>, and the page marks it as you go. What isn't here is a short <strong>Extended Response Sheet</strong> in Canvas — four questions that need real writing and a teacher to read them. Do this page first, download your work summary in Section 12, then write those four answers.</p>
+  </div>
+</header>
+
+<nav class="progress-bar" id="progress-bar" aria-label="Your progress through the twelve sections">
+  <div class="wrap progress-inner">
+    <span class="progress-label">Your progress</span>
+    <ol class="progress-steps" id="progress-steps">
+      <li class="progress-group-label">Period 1 · Compression</li>
+      <li><a href="#section-1" data-progress-step="1"><span class="pnum">1</span><span class="pname">Hook</span></a></li>
+      <li><a href="#section-2" data-progress-step="2"><span class="pnum">2</span><span class="pname">Two kinds</span></a></li>
+      <li><a href="#section-3" data-progress-step="3"><span class="pnum">3</span><span class="pname">How it works</span></a></li>
+      <li><a href="#section-4" data-progress-step="4"><span class="pnum">4</span><span class="pname">Sort the types</span></a></li>
+      <li><a href="#section-5" data-progress-step="5"><span class="pnum">5</span><span class="pname">Question 1</span></a></li>
+      <li><a href="#section-6" data-progress-step="6"><span class="pnum">6</span><span class="pname">Questions 2 &amp; 3</span></a></li>
+      <li class="progress-sep" aria-hidden="true"></li>
+      <li class="progress-group-label">Period 2 · Terms of use</li>
+      <li><a href="#section-7" data-progress-step="7"><span class="pnum">7</span><span class="pname">What's in one</span></a></li>
+      <li><a href="#section-8" data-progress-step="8"><span class="pnum">8</span><span class="pname">Part B</span></a></li>
+      <li><a href="#section-9" data-progress-step="9"><span class="pnum">9</span><span class="pname">Close reading</span></a></li>
+      <li><a href="#section-10" data-progress-step="10"><span class="pnum">10</span><span class="pname">Find a real one</span></a></li>
+      <li><a href="#section-11" data-progress-step="11"><span class="pnum">11</span><span class="pname">Going further</span> <span class="poptional">optional</span></a></li>
+      <li><a href="#section-12" data-progress-step="12"><span class="pnum">12</span><span class="pname">Wrap-up</span></a></li>
+    </ol>
+    <p class="progress-note" id="progress-count">0 of 12 sections finished</p>
+    <button type="button" class="btn btn-ghost btn-tiny" id="reset-progress">Reset my progress</button>
+  </div>
+</nav>
+
+<main class="wrap">
+
+<!-- ============ SECTION 1 ============ -->
+<section id="section-1" class="section" data-section="1">
+  <p class="section-tag">Section 1 · Hook</p>
+  <div class="section-head">
+    <h2>Hook: "Same picture, ten times smaller"</h2>
+    <button type="button" class="speak-btn" title="Read this section aloud" aria-label="Read this section aloud">🔊</button>
+  </div>
+
+  <div class="commit-box" id="commit-box">
+    <h3>Same picture, ten times smaller</h3>
+    <p>Here is the same photo, saved two different ways.</p>
+    <div class="size-tiles">
+      <div class="size-tile"><span class="size-tile-label">Version A</span><span class="size-tile-value">8 MB</span></div>
+      <div class="size-tile"><span class="size-tile-label">Version B</span><span class="size-tile-value">350 KB</span></div>
+    </div>
+    <p>That's about <strong>twenty-three times smaller</strong>. Side by side on a phone screen, at normal size, you would struggle to tell them apart.</p>
+    <p>Before you read anything else on this page: <strong>what do you think the computer actually did to that file to make it that much smaller?</strong> Write down your own answer. Don't look it up, and don't worry about being right — nobody marks this and nobody else sees it.</p>
+    <label class="sr-only" for="commit-input">What do you think the computer did?</label>
+    <textarea id="commit-input" rows="4" placeholder="I think the computer..."></textarea>
+    <button type="button" class="btn btn-primary" id="commit-btn">Save my answer and continue</button>
+    <p class="hint" id="commit-hint" hidden>Write something first — anything at all. It isn't marked.</p>
+  </div>
+
+  <div class="your-answer" id="your-answer" hidden>
+    <h4>Your answer:</h4>
+    <p id="your-answer-text"></p>
+  </div>
+
+  <p class="unlock-copy" id="unlock-copy" hidden>Good. Now here are three guesses people usually make. For each one, decide <strong>Yes, that's it</strong> or <strong>No, that's not it</strong> before you reveal the answer — committing to a guess first is the point.</p>
+
+  <div class="cards locked" id="hook-cards" aria-live="polite">
+
+    <article class="card hook-card" data-card="resize">
+      <h3>"It just made the picture smaller on the screen."</h3>
+      <p class="card-desc">The computer shrank the photo down so it takes up fewer pixels — a smaller picture, so a smaller file.</p>
+      <p class="card-q">Is that it?</p>
+      <div class="btn-row">
+        <button type="button" class="btn btn-choice" data-choice="yes" disabled>Yes, that's it</button>
+        <button type="button" class="btn btn-choice" data-choice="no" disabled>No, that's not it</button>
+      </div>
+      <div class="verdict" hidden>
+        <p class="verdict-open"></p>
+        <p>Resizing a photo down genuinely does make the file smaller — but that isn't what happened here. Both versions are the <strong>same size on screen</strong>; that's the whole point of the comparison. Version B has just as many pixels as Version A. Something else got smaller, and it wasn't the dimensions.</p>
+      </div>
+    </article>
+
+    <article class="card hook-card" data-card="zip">
+      <h3>"It zipped it up, like a ZIP folder."</h3>
+      <p class="card-desc">The computer packed the file up tightly, the way a ZIP file squeezes documents together.</p>
+      <p class="card-q">Is that it?</p>
+      <div class="btn-row">
+        <button type="button" class="btn btn-choice" data-choice="yes" disabled>Yes, that's it</button>
+        <button type="button" class="btn btn-choice" data-choice="no" disabled>No, that's not it</button>
+      </div>
+      <div class="verdict" hidden>
+        <p class="verdict-open"></p>
+        <p>Close, and this is a real technique — it's called <strong>lossless compression</strong>, and ZIP is exactly that. It squeezes a file down by spotting repetition and storing it more efficiently, and you get every single bit of the original back when you unpack it. But lossless compression can't get you anywhere near twenty-three times smaller on a photo. To shrink a photo that hard, something has to actually be <strong>thrown away</strong>.</p>
+      </div>
+    </article>
+
+    <article class="card hook-card" data-card="lossy">
+      <h3>"It threw some of the information away on purpose."</h3>
+      <p class="card-desc">The computer permanently deleted some of the detail in the photo, betting that you wouldn't notice.</p>
+      <p class="card-q">Is that it?</p>
+      <div class="btn-row">
+        <button type="button" class="btn btn-choice" data-choice="yes" disabled>Yes, that's it</button>
+        <button type="button" class="btn btn-choice" data-choice="no" disabled>No, that's not it</button>
+      </div>
+      <div class="verdict" hidden>
+        <p class="verdict-open"></p>
+        <p>Exactly. This is called <strong>lossy compression</strong>. The format's designers worked out which details human eyes are worst at noticing — subtle colour shifts, fine texture in busy areas — and threw those away. Not hidden, not compressed, not recoverable: <strong>gone</strong>. Open Version B and save it again and the discarded detail does not come back, because it isn't in the file any more. The gamble is that you can't tell, and at normal viewing size the gamble usually pays off.</p>
+      </div>
+    </article>
+
+  </div>
+
+  <div class="key-idea" id="hook-key-idea" hidden>
+    <p><strong>Key idea:</strong> there are <strong>two different things</strong> people mean by "compressing a file." One keeps everything and just stores it more cleverly. The other permanently throws some of it away. Card 2 was the first kind, Card 3 was the second, and telling them apart is what Period 1 is about.</p>
+    <p>Look back at the answer you wrote at the top of this section. Did you describe throwing information away, or storing it more efficiently? Either is a reasonable first guess — most people don't know there are two different answers until someone tells them.</p>
+  </div>
+
+  <div class="lesson-panel">
+    <h4>What Period 1 is for</h4>
+    <div class="li-grid">
+      <div>
+        <h5>Learning intention</h5>
+        <p>Explain what data compression is and the difference between lossy and lossless compression, including its impact on data transmission.</p>
+      </div>
+      <div>
+        <h5>You'll know you've got it when you can</h5>
+        <ul>
+          <li>Define compression in your own words</li>
+          <li>Correctly classify a file type as lossy or lossless</li>
+          <li>Explain one real consequence of compression for sending data</li>
+        </ul>
+      </div>
+    </div>
+    <p class="li-note">Section 6 ends with a two-question check against exactly those three. Nothing on this page is a surprise test — that's the list.</p>
+  </div>
+</section>
+
+<!-- ============ SECTION 2 ============ -->
+<section id="section-2" class="section" data-section="2">
+  <p class="section-tag">Section 2 · Two kinds</p>
+  <div class="section-head">
+    <h2>Two kinds of compression</h2>
+    <button type="button" class="speak-btn" title="Read this section aloud" aria-label="Read this section aloud">🔊</button>
+  </div>
+
+  <p><strong>Compression</strong> means shrinking a file so it's faster and cheaper to store or to send.</p>
+  <p>There are two kinds, and the difference between them is the single most important idea in this period.</p>
+
+  <div class="cmp-table-wrap">
+    <table class="cmp-table">
+      <thead><tr><th></th><th>What happens</th><th>Can you get the original back exactly?</th><th>Real examples</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Lossless compression</strong></td><td>Shrinks the file by finding and removing repetition — no information is thrown away</td><td><strong>Yes</strong> — perfectly, bit for bit</td><td>ZIP, PNG images, FLAC audio</td></tr>
+        <tr><td><strong>Lossy compression</strong></td><td>Shrinks the file by permanently discarding some information the format's designers judged you wouldn't notice</td><td><strong>No</strong> — some detail is gone for good</td><td>JPEG images, MP3/AAC audio, MP4/H.264 video</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="key-phrasing">
+    <p><strong>Say it to yourself this way:</strong> <em>Lossless means you can get back the exact original, bit for bit. Lossy means some of the original is gone forever — you're trading a smaller file for less-than-perfect quality.</em></p>
+  </div>
+
+  <p><strong>Neither one is "better."</strong> The right choice depends on what the data is for. Lossless is safe but doesn't shrink a file as much. Lossy shrinks a file far more, but you're gambling that nobody notices what's missing.</p>
+
+  <h3>Why this matters for sending data</h3>
+  <p>A smaller file needs <strong>less time</strong> and <strong>less data allowance</strong> to send. That's the whole reason video calls, music streaming and social media photo uploads all use lossy compression — without it, they'd be too slow and too expensive to send over an ordinary internet connection.</p>
+  <p>Here's the side-effect that gives it away. Download a friend's photo from Instagram, then re-upload it to your own post. It gets compressed <strong>again</strong>, on top of a round of loss that already happened. Do that a few times and the picture visibly falls apart. That's not a myth or a rumour — it's lossy compression stacking, and it's the clearest everyday proof that something really is being thrown away rather than just packed tighter.</p>
+
+  <div class="quickcheck" data-quickcheck="qc-compression" data-correct="lossless">
+    <p class="qc-q"><strong>Quick check:</strong> Which kind of compression lets you get the <strong>exact</strong> original file back?</p>
+    <div class="qc-options">
+      <button type="button" class="btn btn-option" data-value="lossless">Lossless</button>
+      <button type="button" class="btn btn-option" data-value="lossy">Lossy</button>
+      <button type="button" class="btn btn-option" data-value="both">Both, if you use the right software</button>
+      <button type="button" class="btn btn-option" data-value="neither">Neither — compression always loses something</button>
+    </div>
+    <p class="qc-feedback" hidden aria-live="polite"></p>
+    <div class="qc-texts" hidden>
+      <p data-for="lossless">Yes — lossless. Every bit of the original is recoverable, which is why ZIP is safe for documents and code where a single changed character would matter.</p>
+      <p data-for="lossy">Not quite — that's the wrong way round. <strong>Lossy</strong> is the one that permanently throws information away. <strong>Lossless</strong> is the one you can fully recover. Re-read the two cards above; getting these two the wrong way round is the single most common mix-up in this topic.</p>
+      <p data-for="both">Not quite — it's <strong>lossless</strong> only. No software can recover what a lossy format deleted, because the deleted detail is not stored anywhere in the file. There's nothing left to recover it from.</p>
+      <p data-for="neither">Not quite — it's <strong>lossless</strong>. Lossless compression genuinely loses nothing; it just stores the same information more efficiently, the way ZIP does. Only <strong>lossy</strong> compression discards anything.</p>
+    </div>
+  </div>
+
+  <h3>How much smaller, really?</h3>
+  <p>Here is the same three-minute song, saved four ways. Drag them into order, <strong>largest file at the top</strong>.</p>
+  <p>If dragging is awkward, use the ▲ and ▼ buttons on each card instead — they do exactly the same thing.</p>
+  <div id="order-song" class="order-widget"></div>
+
+  <div class="key-idea" id="section2-closing" hidden>
+    <p>You now have both halves of Section 2's idea: the table tells you two kinds exist, and the ordering task tells you what that does to a real file. Section 3 is about <strong>how</strong> each kind actually does it.</p>
+  </div>
+</section>
+
+<!-- ============ SECTION 3 ============ -->
+<section id="section-3" class="section" data-section="3">
+  <p class="section-tag">Section 3 · How it actually works</p>
+  <div class="section-head">
+    <h2>How compression actually works</h2>
+    <button type="button" class="speak-btn" title="Read this section aloud" aria-label="Read this section aloud">🔊</button>
+  </div>
+
+  <p>You now know there are two kinds. This section is about what each one actually does to the bits — and it's the part that makes the rest of this page make sense rather than just be a list to remember.</p>
+  <p>Watch the video if you can. Everything in it is also written out underneath, so you lose nothing if you can't.</p>
+
+  <div class="video-block">
+    <h3>Watch: Compression</h3>
+    <p class="video-caption">Crash Course Computer Science #21, by CrashCourse (PBS Digital Studios).</p>
+    <a class="video-thumb-link" href="https://www.youtube.com/watch?v=OtDxDvCpPL4" target="_blank" rel="noopener">
+      <img loading="lazy" src="https://img.youtube.com/vi/OtDxDvCpPL4/maxresdefault.jpg" alt="Click to watch: Compression — Crash Course Computer Science #21, on YouTube">
+      <span class="video-play-badge" aria-hidden="true">▶</span>
+    </a>
+    <p class="video-link-caption">Click the image to watch "Compression — Crash Course Computer Science #21" on YouTube. Opens in a new tab.</p>
+    <div class="video-fallback">
+      <p><strong>Video won't play, or blocked on your device?</strong> Skip it. <strong>Nothing on the rest of this page depends on having watched it.</strong> Everything the video explains is written out in the box below, and all three activities under it can be done from that box alone. Read "What the video covers" and carry straight on.</p>
+    </div>
+  </div>
+
+  <div class="mechanism-box">
+    <h4>What the video covers (read this whether or not you watched it)</h4>
+    <p><strong>1. Lossless trick one — run-length encoding.</strong> Lots of files contain long runs of exactly the same thing: a stretch of white pixels across the top of a screenshot, a run of silence in a recording. Instead of storing <em>white, white, white, white, white</em>, you store <em>5 × white</em>. Same information, far fewer bits, and you can rebuild the original exactly. That's why PNG is so good at screenshots and logos — they're full of flat areas — and comparatively poor at photos, which have almost no exact repeats.</p>
+    <p><strong>2. Lossless trick two — a dictionary of the common bits.</strong> The second trick is to stop giving every symbol the same amount of space. Work out which patterns appear most often, give <strong>those</strong> the shortest codes, and give rare patterns longer ones. The file carries a small dictionary explaining the codes. Because common things now take fewer bits, the total shrinks — and again nothing is lost, because the dictionary lets you rebuild the original exactly. The classic version of this is called <strong>Huffman coding</strong>, and almost every lossless format uses some form of it, ZIP included.</p>
+    <p><strong>3. Lossy — throwing away what you won't notice.</strong> Both tricks above have a hard limit. If a file has no repetition and no lopsided pattern frequencies, there is nothing left to squeeze. To get much smaller than that, you have to delete something. Lossy formats delete <strong>on purpose</strong>, guided by what human senses are worst at: JPEG throws away fine colour detail, because eyes notice changes in brightness far more than changes in colour. MP3 throws away sounds that louder sounds are drowning out at the same moment. This is called <strong>perceptual coding</strong> — compressing against the limits of human perception rather than against the data itself.</p>
+    <p><strong>The one sentence that ties it together:</strong> lossless compression removes <strong>redundancy</strong> — things the file said twice. Lossy compression removes <strong>information</strong> — things the file only said once, that you probably won't miss.</p>
+  </div>
+
+  <h3>Try it: run-length encoding</h3>
+  <p>Reading about it isn't the same as doing it. Here's one row of pixels from a black-and-white image. <code>W</code> is a white pixel, <code>B</code> is a black one. Twenty pixels:</p>
+  <p class="mono-row">WWWWWWWBBBWWWWWWWWWW</p>
+  <p>Write it as run-length encoding: for each run, the <strong>number of repeats</strong> then the <strong>letter</strong>, in order, left to right. The first run is seven whites, so your answer starts <code>7W</code>. No spaces, no commas.</p>
+  <div id="rle-1" class="typed-item"></div>
+  <div id="rle-2" class="typed-item" hidden></div>
+
+  <h3>Which trick would help?</h3>
+  <p>Three files. For each one, pick the technique that would do most of the work, then press <strong>Check</strong>. You'll be told why straight away.</p>
+  <p class="classifier-counter" id="section3d-counter" aria-live="polite">0 of 3 checked</p>
+  <div class="classifier classifier-single-col" id="section3d-classifier"></div>
+
+  <h3>Select every statement that is true</h3>
+  <p>Six statements. Some are true and some aren't. Select <strong>every</strong> true one — there is more than one — then press Check. You'll get a note beside each statement whether you selected it or not.</p>
+  <div id="ms-3e" class="ms-widget"></div>
+
+  <div class="key-idea" id="section3-closing" hidden>
+    <p>You now know something the two-kinds table doesn't tell you: <strong>lossless and lossy aren't just two labels, they're two different jobs.</strong> Lossless looks for what a file repeats. Lossy looks for what you won't miss. When you sort the file types in the next section, what you're really asking is which of those two jobs each format was built to do.</p>
+  </div>
+</section>
+
+<!-- ============ SECTION 4 ============ -->
+<section id="section-4" class="section" data-section="4">
+  <p class="section-tag">Section 4 · Sort the types</p>
+  <div class="section-head">
+    <h2>Sort the file types</h2>
+    <button type="button" class="speak-btn" title="Read this section aloud" aria-label="Read this section aloud">🔊</button>
+  </div>
+
+  <p>Eight real file types. Drag each one into the bin where it belongs, then press <strong>Check my sort</strong>. You'll get a note on every chip telling you whether it's in the right place and why.</p>
+  <p>If dragging is awkward, every chip also has three buttons — <strong>→ Lossless</strong>, <strong>→ Lossy</strong> and <strong>→ It's complicated</strong> — that put it in a bin directly. They do exactly the same thing, so use whichever is easier.</p>
+  <p><strong>None of this is marked and nothing is recorded.</strong> This is practice. The graded version is the next section.</p>
+  <p>One of these eight is genuinely argued about by people who know what they're talking about. There's a bin for it.</p>
+
+  <p class="classifier-counter" id="section4-counter" aria-live="polite">0 of 8 placed</p>
+  <div id="categorise-4" class="categorise-widget"></div>
+
+  <div class="key-idea" id="section4-closing" hidden>
+    <p>Done. Notice what you were actually deciding each time: <strong>was anything permanently thrown away, or was it just stored more cleverly?</strong> File extensions and format names won't tell you — WAV and FLAC sound nothing alike as words but do the same job, and GIF looks like it should be simple and isn't.</p>
+    <p>Look at your Lossless bin. Two of the things in it (WAV, and anything uncompressed) had <strong>no compression step at all</strong>, and the rest had a compression step that removed only repetition. Those are two different reasons for the same label, and both are correct.</p>
+    <p>Next section is the graded one. Same question, six file types, three of them new.</p>
+  </div>
+</section>
+
+<!-- ============ SECTION 5 ============ -->
+<section id="section-5" class="section" data-section="5">
+  <p class="section-tag graded-tag">Section 5 · Question 1 — this one counts</p>
+  <div class="section-head">
+    <h2>Question 1 — Lossy or lossless? (6 marks)</h2>
+    <button type="button" class="speak-btn" title="Read this section aloud" aria-label="Read this section aloud">🔊</button>
+  </div>
+
+  <p>This is the real <strong>Question 1</strong> from your worksheet. You do it here, not on paper. For each file type, choose <strong>Lossless</strong> or <strong>Lossy</strong> and press <strong>Check</strong>. You'll be told immediately whether you're right and, if not, why.</p>
+  <p>You can retry as many times as you need — it only counts once you've got it right. Getting it wrong and then fixing it is how this is meant to work.</p>
+  <p>Three of these you've already met in Section 4. Three are new. Scroll back up to Section 2's table any time — it's meant to stay open in front of you.</p>
+  <p>When you've finished all six, your answers are recorded in your work summary in <strong>Section 12</strong>.</p>
+
+  <p class="classifier-counter" id="section5-counter" aria-live="polite">0 of 6 done</p>
+  <div class="classifier" id="section5-classifier"></div>
+
+  <div class="key-idea" id="section5-closing" hidden>
+    <p>Question 1 is finished, and your work summary in Section 12 now has these six answers.</p>
+    <p>Three of those six were decided by one word in the description — <em>uncompressed</em> for BMP and RAW, <em>lossy mode</em> for WebP. That is genuinely how this works in real life: you read what was actually done to the file, not what the extension is called.</p>
+  </div>
+</section>
+
+<!-- ============ SECTION 6 ============ -->
+<section id="section-6" class="section" data-section="6">
+  <p class="section-tag graded-tag">Section 6 · Questions 2 &amp; 3 — these count</p>
+  <div class="section-head">
+    <h2>Questions 2 and 3 — explain the trade-off (9 marks)</h2>
+    <button type="button" class="speak-btn" title="Read this section aloud" aria-label="Read this section aloud">🔊</button>
+  </div>
+
+  <p>These are the real <strong>Questions 2 and 3</strong> from your worksheet. Question 2 is about a single photo saved two ways; Question 3 is about what compression does when you send things.</p>
+  <p>Most of what's below marks itself. One part — the last bit of Question 3b — genuinely can't be marked by a computer without lying to you about it, so instead you'll compare your answer against a model one and rate it yourself. That's said plainly where it happens.</p>
+
+  <div class="scenario-box">
+    <p><strong>The scenario for Question 2.</strong> A phone camera saves the same photo two ways at the same moment:</p>
+    <p><strong>A 24 MB RAW file.</strong> &nbsp; <strong>A 3 MB JPEG file.</strong></p>
+  </div>
+
+  <h3>Question 2a — Which one is lossy, and which is lossless? (1 mark)</h3>
+  <div id="linked-6a"></div>
+
+  <h3>And how much smaller is it?</h3>
+  <p>The RAW is <strong>24 MB</strong>. The JPEG is <strong>3 MB</strong>. How many times smaller is the JPEG? Type just the number.</p>
+  <div id="numeric-6b" class="typed-item"></div>
+
+  <h3>Question 2b — What happened to the JPEG? (2 marks)</h3>
+  <p>Fill every gap from the word bank. <strong>Four of the eight words are not used</strong> — part of the task is deciding which four don't belong.</p>
+  <div id="cloze-6c" class="cloze-widget"></div>
+
+  <h3>Question 2c — When would you want the 24 MB RAW instead? (2 marks)</h3>
+  <p>Select <strong>every</strong> reason below that is a genuinely good reason to keep the 24 MB RAW. There is more than one, and some of these are not good reasons at all.</p>
+  <div id="ms-6d" class="ms-widget"></div>
+
+  <h3>Question 3a — Why do streaming services use lossy compression? (2 marks)</h3>
+  <p>Fill every gap from the word bank. Again, <strong>four of the eight words are not used</strong>.</p>
+  <div id="cloze-6e" class="cloze-widget"></div>
+
+  <h3>Question 3b — What happens when a photo is re-uploaded? (2 marks)</h3>
+  <div class="scenario-box">
+    <p>A friend downloads a photo from someone else's Instagram post, then re-uploads that same photo to their own Instagram post.</p>
+  </div>
+  <p><strong>Part 1 — put the chain in order (auto-marked).</strong> Drag these five steps into the order they actually happen. Use the ▲ and ▼ buttons instead if that's easier.</p>
+  <div id="order-6f" class="order-widget"></div>
+
+  <div id="prose-6f" hidden>
+    <p><strong>Part 2 — explain it in your own words (not auto-marked, and the page says so).</strong> Now write the answer as you'd write it on paper: <strong>predict what happens to the image quality, and explain why.</strong></p>
+    <p><strong>This part is not marked by the page.</strong> A computer can check an ordering; it can't fairly judge a sentence — it would pass a shallow answer that happened to use the right words, and fail a good answer that used different ones. So instead you'll write yours, then compare it against a model answer and rate it against three specific things.</p>
+    <label class="sr-only" for="prose-6f-input">Predict and explain what happens to the image quality</label>
+    <textarea id="prose-6f-input" class="field-textarea" rows="4" placeholder="The image quality will..."></textarea>
+    <button type="button" class="btn btn-primary" id="prose-6f-btn">Save and show me the model answer</button>
+    <p class="hint" id="prose-6f-hint" hidden>Write your answer first — the model answer unlocks once you've committed to your own.</p>
+    <div class="reveal-block" id="prose-6f-reveal" hidden>
+      <p><strong>A model answer.</strong> The image quality will get noticeably worse. The photo was already a JPEG, so detail had been thrown away once before anyone uploaded it. Instagram compressed it again when it was first posted, and compresses it a third time when my friend re-uploads it. Because lossy compression never puts back what it removed, each round is throwing detail away from a copy that is already missing some — so the losses stack up rather than staying the same, and after a few rounds you can see blockiness and blotchy colour that weren't in the original.</p>
+    </div>
+    <div class="self-check-box" id="selfcheck-6f" hidden>
+      <p><strong>Tick each one your answer genuinely does. Be honest — nobody sees this but you, and an honest tick tells you what to fix.</strong></p>
+      <ul class="self-check-list">
+        <li><input type="checkbox" id="tick-6f-1"><label for="tick-6f-1">I <strong>predicted</strong> the quality would get <strong>worse</strong> (not "stay the same," not "get better")</label></li>
+        <li><input type="checkbox" id="tick-6f-2"><label for="tick-6f-2">I said the photo was compressed <strong>more than once</strong> — that it's been through several rounds, not just one</label></li>
+        <li><input type="checkbox" id="tick-6f-3"><label for="tick-6f-3">I explained that each round removes detail from an <strong>already-reduced copy</strong>, so the damage <strong>builds up</strong></label></li>
+      </ul>
+      <p class="li-note"><strong>The third tick is the one that separates a 2-mark answer from a 1-mark answer.</strong> "It gets compressed again so it looks worse" is true but it isn't the explanation — plenty of things get processed twice with no cumulative harm. What makes this different is that lossy compression <strong>can never restore what it removed</strong>, so every round starts from a worse original.</p>
+      <p class="li-note">Missing a tick isn't a failure — it's the specific thing to add. Edit your answer above and save it again if you want to; it's stored either way and appears in your work summary.</p>
+    </div>
+  </div>
+
+  <h3>End of Period 1 — the exit ticket</h3>
+  <p>Before you stop, the two questions your teacher would ask at the end of a normal lesson.</p>
+  <p><strong>Part 1 — name one of each (auto-marked).</strong> Type <strong>one real file format</strong> in each box. Just the format name — <code>PNG</code>, <code>.mp3</code>, whatever you like.</p>
+  <div id="exit-formats" class="typed-item"></div>
+
+  <div id="exit-defs" hidden>
+    <p><strong>Part 2 — define both (self-checked).</strong> Now define both, one sentence each, in your own words. <strong>The page doesn't mark this</strong> — you'll compare it against a model, the same way you did in 3b.</p>
+    <label class="field-label" for="exit-def-lossless">Lossless compression is...</label>
+    <textarea id="exit-def-lossless" class="field-textarea" rows="2" placeholder="Lossless compression is..."></textarea>
+    <label class="field-label" for="exit-def-lossy">Lossy compression is...</label>
+    <textarea id="exit-def-lossy" class="field-textarea" rows="2" placeholder="Lossy compression is..."></textarea>
+    <button type="button" class="btn btn-primary" id="exit-def-btn">Save and show me the model definitions</button>
+    <div class="reveal-block" id="exit-def-reveal" hidden>
+      <p><strong>Lossless compression</strong> makes a file smaller by storing repeated information more efficiently, so you can rebuild the exact original, bit for bit, with nothing missing.</p>
+      <p><strong>Lossy compression</strong> makes a file much smaller by permanently deleting information the format's designers judged you wouldn't notice — and once it's gone, no software can bring it back.</p>
+    </div>
+    <div class="self-check-box" id="selfcheck-exit" hidden>
+      <ul class="self-check-list">
+        <li><input type="checkbox" id="tick-exit-1"><label for="tick-exit-1">Both my sentences say the file gets <strong>smaller</strong> — that's what compression <em>is</em>, and it's easy to leave out</label></li>
+        <li><input type="checkbox" id="tick-exit-2"><label for="tick-exit-2">My lossless sentence says the original can be recovered <strong>exactly</strong></label></li>
+        <li><input type="checkbox" id="tick-exit-3"><label for="tick-exit-3">My lossy sentence says the discarded information is <strong>gone permanently</strong> — not hidden, not compressed, not recoverable</label></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="key-idea" id="section6-closing" hidden>
+    <p>That's Questions 2 and 3 finished, and Period 1 with them. Look back at the success criteria in Section 1: define compression in your own words, classify a file type, explain one real consequence for sending data. You've now done all three, twice each.</p>
+    <p>Your work summary in Section 12 has everything from this half. <strong>Stop here unless your teacher has told you otherwise.</strong></p>
+  </div>
+</section>
+
+<!-- ============ PERIOD DIVIDER ============ -->
+<div class="period-divider">
+  <div class="wrap">
+    <p class="divider-title">End of Period 1. Stop here.</p>
+    <p>That's the compression half done, including all of the compression questions from your worksheet. Everything below is <strong>Period 2</strong> — terms of use policies and EULAs — and you'll do it next lesson. Your progress is saved in this browser, so you can close the tab and come back to this exact spot.</p>
+    <p>If your teacher has told you to keep going, or you're catching up on both periods at once, carry straight on.</p>
+  </div>
+</div>
+
+<!-- ============ SECTION 7 ============ -->
+<section id="section-7" class="section section-p2" data-section="7">
+  <p class="section-tag">Section 7 · What's in one</p>
+  <div class="section-head">
+    <h2>What's actually in a terms of use policy</h2>
+    <button type="button" class="speak-btn" title="Read this section aloud" aria-label="Read this section aloud">🔊</button>
+  </div>
+
+  <p>Before you read anything about them: <strong>have you ever actually read the terms before clicking "I agree"?</strong></p>
+  <p>Almost nobody has. That's not a criticism — the average app's terms of use runs to thousands of words of legal English, and there's a button right there that makes it go away. But it does mean most people are agreeing to a real, legally binding contract without knowing what's in it.</p>
+  <p><strong>What do you think might be in there that would surprise you?</strong> Hold that thought. By Section 10 you'll be reading a real one, and Section 10 asks you that question again — this time with evidence.</p>
+
+  <div class="lesson-panel">
+    <h4>What Period 2 is for</h4>
+    <div class="li-grid">
+      <div>
+        <h5>Learning intention</h5>
+        <p>Analyse a terms of use policy or EULA and predict how it could affect a user's or society's attitudes to data protection.</p>
+      </div>
+      <div>
+        <h5>You'll know you've got it when you can</h5>
+        <ul>
+          <li>Explain what a EULA or terms of use policy is, and why products have them</li>
+          <li>Identify at least two real clauses that affect user data</li>
+          <li>Predict one way a clause could affect trust or data protection</li>
+        </ul>
+      </div>
+    </div>
+    <p class="li-note">Sections 8 and 9 build the first two. Section 10 is the third, on a real document of your own choosing.</p>
+  </div>
+
+  <p>A <strong>terms of use policy</strong> — or a <strong>EULA</strong>, an End User Licence Agreement — is a legal agreement between you and a software company. It sets out what they can do with your data and what you're allowed to do with their product. Clicking "I agree" is a genuine legal step, even though almost nobody reads what they're agreeing to. That gap — between what's actually written and what most people assume is written — is what this period is about reading past.</p>
+  <p>Almost every one of them is built from the same six kinds of clause. Once you know the six, you can skim any set of terms and find what matters in a couple of minutes.</p>
+
+  <div class="clause-table-wrap">
+    <table class="clause-table">
+      <thead><tr><th>Typical clause</th><th>What it covers</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Data collection</strong></td><td>What information the app collects about you — account details, location, usage, contacts and so on</td></tr>
+        <tr><td><strong>Data use and sharing</strong></td><td>What the company can do with that data, and whether it's shared with or sold to other companies</td></tr>
+        <tr><td><strong>Content ownership</strong></td><td>Who owns something you create or upload — and what rights the company gets to use it</td></tr>
+        <tr><td><strong>Acceptable use</strong></td><td>The rules for what you're allowed to do with the product</td></tr>
+        <tr><td><strong>Liability</strong></td><td>What the company is and isn't responsible for if something goes wrong</td></tr>
+        <tr><td><strong>Dispute resolution</strong></td><td>What happens if you and the company disagree — for example, whether you can join a class-action lawsuit or must go to individual arbitration</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="note-box">
+    <p><strong>"Arbitration" is worth knowing.</strong> It means a disagreement gets settled privately, by a paid arbitrator, instead of in a public court. It sounds like a small procedural detail and it isn't: it affects whether large groups of affected users can act together against a company at all. It's one of the most consequential clauses in real terms of use, and one of the least noticed.</p>
+  </div>
+
+  <h3>One person's click, everyone's pattern</h3>
+  <div class="twocol">
+    <article class="panel panel-a">
+      <h3>Panel A — One user</h3>
+      <p>Agrees to a data-collection clause without reading it. It feels like a small, private decision about one app on one phone. If it turns out badly, it's one person's problem.</p>
+    </article>
+    <article class="panel panel-b">
+      <h3>Panel B — Millions of users</h3>
+      <p>Agree to the same clause, the same way, without reading it. Now personal data about almost everyone is concentrated in the hands of a small number of companies. Nobody voted for that and nobody individually chose it — it's the sum of millions of identical small decisions.</p>
+    </article>
+  </div>
+
+  <p>That's the shift this period is asking you to make: from <em>"what does this clause mean for me?"</em> to <em>"what does this clause mean when everybody agrees to it?"</em> A clause can be perfectly legal, clearly written and freely agreed to, and still produce a result nobody would have chosen if they'd been asked directly. <strong>Legal and ethical are different questions.</strong></p>
+
+  <div class="note-box framing">
+    <p><strong>A note before you go looking.</strong> Some of what you find in a real app's terms is going to surprise you, and some of it may bother you. That's a normal reaction and it means you're reading properly.</p>
+    <p>The point of this is <strong>not</strong> that everything you use is secretly awful. It's that you now know how to check before you agree to something — which is a genuinely useful skill that most adults don't have. If something you read worries you specifically, that's worth raising with your teacher rather than sitting with it.</p>
+  </div>
+
+  <div class="quickcheck" data-quickcheck="qc-clause" data-correct="use">
+    <p class="qc-q"><strong>Quick check:</strong> A clause says the company can share your data with third-party advertising partners. Which category is it?</p>
+    <div class="qc-options">
+      <button type="button" class="btn btn-option" data-value="collection">Data collection</button>
+      <button type="button" class="btn btn-option" data-value="use">Data use and sharing</button>
+      <button type="button" class="btn btn-option" data-value="ownership">Content ownership</button>
+      <button type="button" class="btn btn-option" data-value="liability">Liability</button>
+    </div>
+    <p class="qc-feedback" hidden aria-live="polite"></p>
+    <div class="qc-texts" hidden>
+      <p data-for="use">Yes — Data use and sharing. Notice the difference from Data collection: <em>collection</em> is what they gather about you, <em>use and sharing</em> is what they then do with it and who else gets it. The two go together but they're separate clauses, and a company can be very open about one and very vague about the other.</p>
+      <p data-for="collection">Close, and this is the mix-up worth getting straight. <strong>Data collection</strong> is what information they gather about you in the first place. <strong>Data use and sharing</strong> is what happens to it afterwards — including passing it to other companies. This clause is about what happens afterwards, so it's <strong>Data use and sharing</strong>.</p>
+      <p data-for="ownership">Not quite — content ownership is about things you <strong>make and upload</strong>: your photos, your posts, your videos. This clause is about <strong>data about you</strong> being passed to other companies, which is <strong>Data use and sharing</strong>.</p>
+      <p data-for="liability">Not quite — liability is about who's <strong>responsible when something goes wrong</strong>. This clause isn't about blame or fault; it's about your data being passed on, which is <strong>Data use and sharing</strong>.</p>
+    </div>
+  </div>
+
+  <h3>Question 4a — What is a terms of use policy or EULA? (2 marks)</h3>
+  <p>Fill every gap from the word bank. <strong>Four of the eight words are not used.</strong></p>
+  <div id="cloze-7e" class="cloze-widget"></div>
+
+  <h3>Question 4b — Which of these does a terms of use policy typically cover? (3 marks)</h3>
+  <p>Ten things. Select <strong>every one</strong> that a typical terms of use policy actually covers. <strong>Six of the ten are real</strong>, and four are things that live somewhere else entirely.</p>
+  <div id="ms-7f" class="ms-widget"></div>
+
+  <div class="key-idea p2" id="section7-closing" hidden>
+    <p>Question 4 is finished. You now have the six categories and you can tell them apart from the things that only look like them. The next section puts them to work on an actual document.</p>
+  </div>
+</section>
+
+<!-- ============ SECTION 8 ============ -->
+<section id="section-8" class="section section-p2" data-section="8">
+  <p class="section-tag graded-tag p2">Section 8 · Part B — this one counts</p>
+  <div class="section-head">
+    <h2>Part B — read the excerpt (5 marks)</h2>
+    <button type="button" class="speak-btn" title="Read this section aloud" aria-label="Read this section aloud">🔊</button>
+  </div>
+
+  <p>This is the real <strong>Part B</strong> from your worksheet. You do it here.</p>
+  <p>Below is a five-clause excerpt from a set of terms of use. <strong>It is invented for this lesson</strong> — it is not copied from any real company's document — but it's written the way real ones are written.</p>
+  <p>Match each clause to its category. <strong>Each category can be used only once, and one of the six is left over</strong> — working out which one doesn't appear is part of the task.</p>
+  <p>Drag a category chip onto a clause, or use the drop-down on each clause card. They do the same thing.</p>
+
+  <blockquote class="excerpt">
+    <p class="excerpt-title"><strong>Sample App — Terms of Use (excerpt)</strong></p>
+    <ol>
+      <li>By creating an account, you agree that we may collect your name, email address, location data, and information about how you use the App.</li>
+      <li>Content you upload remains yours, but you grant us a worldwide, royalty-free licence to use, reproduce, and display that content in connection with operating the App.</li>
+      <li>We may share your data with third-party partners for advertising purposes.</li>
+      <li>We are not liable for any loss or damage arising from your use of the App.</li>
+      <li>Any dispute must be resolved through individual arbitration, not a court case or class action.</li>
+    </ol>
+  </blockquote>
+
+  <p class="match-counter" id="match8-counter">0 of 5 matched</p>
+  <div id="match-8" class="match-widget"></div>
+
+  <div id="leftover-8a" hidden>
+    <h3>Which category was left over?</h3>
+    <p>You used five of the six categories. Which one never appeared in this excerpt?</p>
+    <div class="classifier classifier-single-col" id="leftover-8a-classifier"></div>
+  </div>
+
+  <div class="key-idea p2" id="section8-closing" hidden>
+    <p>Part B is finished, and your work summary in Section 12 has your answers.</p>
+    <p>Five clauses, five categories, and every single one of them about what the company may do. When you open a real document in Section 10, count how far you get before you find an Acceptable use clause — and notice how much easier that document is to read now that you know there are only six things it can be talking about.</p>
+  </div>
+</section>
+
+<!-- ============ SECTION 9 ============ -->
+<section id="section-9" class="section section-p2" data-section="9">
+  <p class="section-tag">Section 9 · Close reading</p>
+  <div class="section-head">
+    <h2>Finding the giveaway</h2>
+    <button type="button" class="speak-btn" title="Read this section aloud" aria-label="Read this section aloud">🔊</button>
+  </div>
+
+  <p>Real terms of use don't come in tidy one-line clauses. They come in long paragraphs where the sentence that matters is buried in the middle of wording that doesn't.</p>
+  <p>Categorising a clause is really one skill: <strong>find the phrase that says who does what to what.</strong> Everything else in the paragraph is padding. This section drills that, and then gives you six fresh clauses to get fast on.</p>
+
+  <h3>Find the giveaway phrase</h3>
+  <p>Three real-sounding clauses. In each one, <strong>click the phrase that gives the category away</strong> — the phrase that, on its own, tells you what kind of clause this is. Then press Check.</p>
+  <p>Each clause is split into clickable phrases. Click one. Only one is the giveaway.</p>
+  <p class="classifier-counter" id="phrase-counter" aria-live="polite">0 of 3 checked</p>
+  <div id="phrase-9a"></div>
+
+  <div class="key-idea p2" id="section9a-closing" hidden>
+    <p>Three clauses, one method: <strong>ignore everything that isn't a verb with an object.</strong> "Notwithstanding," "to the fullest extent permitted," "including but not limited to," "whether based in contract or tort" — none of that changes what is being done. Find who does what to what, and the category names itself.</p>
+  </div>
+
+  <h3>Six fresh clauses — rapid practice</h3>
+  <p>Six clauses you haven't seen. One at a time, pick the category and press Check. Get one right and your streak goes up; get one wrong and it starts again — but the clause comes back later, so a wrong answer costs you nothing except another go at it.</p>
+  <p><strong>This is practice. Nothing here is marked, nothing is recorded as a score, and the streak is not a result</strong> — it's just a way of noticing when it's started to feel easy.</p>
+  <div id="streak-9b" class="streak-widget"></div>
+
+  <div class="key-idea p2" id="section9-closing" hidden>
+    <p>Six unseen clauses, six categories, no word bank and no excerpt to lean on. Notice that only <strong>one</strong> of the six was about what you're allowed to do, and <strong>five</strong> were about what the company may do or isn't answerable for. That ratio keeps showing up.</p>
+    <p>You're now doing on a cold clause what took a class discussion two sections ago. Section 10 is a real document.</p>
+  </div>
+</section>
+
+<!-- ============ SECTION 10 ============ -->
+<section id="section-10" class="section section-p2" data-section="10">
+  <p class="section-tag">Section 10 · Find a real one</p>
+  <div class="section-head">
+    <h2>Find a real one</h2>
+    <button type="button" class="speak-btn" title="Read this section aloud" aria-label="Read this section aloud">🔊</button>
+  </div>
+
+  <p>Everything so far has been invented for this lesson. Now do it for real.</p>
+  <p>On your own device, open the <strong>terms of use</strong> or <strong>privacy policy</strong> for an app you actually use. Your choice — whatever's on your phone. Read enough of it to find two clauses that affect your data, then answer the questions below.</p>
+  <p><strong>Where to look:</strong> it's usually in the app under <strong>Settings → About</strong>, or <strong>Settings → Legal</strong>, or right at the bottom of the app's website. It is almost never anywhere obvious — that's part of the point.</p>
+  <p>Use Section 9's method: don't read every word. Skim for a phrase with a verb and an object, and ask which of the six categories it belongs to.</p>
+
+  <div class="note-box">
+    <p><strong>Can't find it in under two minutes? Don't keep hunting — use one of these instead.</strong> Any of them works just as well for this task:</p>
+    <ul class="backup-links">
+      <li><strong>Instagram</strong> — <span class="copy-text" tabindex="0" data-copy="help.instagram.com/581066165581870">help.instagram.com/581066165581870</span></li>
+      <li><strong>TikTok</strong> — <span class="copy-text" tabindex="0" data-copy="www.tiktok.com/legal/page/row/terms-of-service/en">www.tiktok.com/legal/page/row/terms-of-service/en</span></li>
+      <li><strong>Discord</strong> — <span class="copy-text" tabindex="0" data-copy="discord.com/terms">discord.com/terms</span></li>
+      <li><strong>Roblox</strong> — <span class="copy-text" tabindex="0" data-copy="en.help.roblox.com/hc/en-us/articles/115004647846">en.help.roblox.com/hc/en-us/articles/115004647846</span></li>
+    </ul>
+    <p class="copy-hint" id="copy-hint" aria-live="polite" hidden>Copied to your clipboard.</p>
+    <p><strong>If your school network blocks all of these</strong>, don't stop. Use the invented five-clause excerpt from Section 8 instead, and say in your answer that you used the sample excerpt because the real page was blocked. You'll lose nothing for that — it's a network problem, not your problem.</p>
+  </div>
+
+  <label class="field-label" for="field-app">Which app did you look at?</label>
+  <input type="text" id="field-app" class="field-input" placeholder="e.g. Instagram, TikTok, Discord, Roblox, a game you play">
+
+  <label class="field-label" for="field-clauses">Quote or closely paraphrase two clauses you found, and name the category each belongs to.</label>
+  <p class="helper-copy">Use the six categories from Section 7. Quote the <strong>actual wording</strong> you found — don't guess what it probably says. If the wording is long, a close paraphrase is fine, as long as it's genuinely what the clause says.</p>
+  <p class="helper-copy"><em>Start with:</em> "Clause 1 says ___, which is a ___ clause."</p>
+  <textarea id="field-clauses" class="field-textarea" rows="6" placeholder="Clause 1 says..."></textarea>
+
+  <label class="field-label" for="field-meaning">Pick one of your two clauses. Predict one way it could affect attitudes to data protection — for you, or for people generally.</label>
+  <p class="helper-copy">This is the hardest question on the page and the one worth the most. Reason from <strong>your specific clause</strong> to a <strong>specific consequence</strong>. "This could affect my privacy" isn't an answer — it doesn't say how, or to whom.</p>
+  <p class="helper-copy">Then push it out from you to everyone. <em>Start with:</em> "If millions of people agree to this without reading it, ___."</p>
+  <textarea id="field-meaning" class="field-textarea" rows="6" placeholder="If millions of people agree to this without reading it..."></textarea>
+
+  <label class="field-label" for="field-surprise">One clause you found surprising, and why.</label>
+  <p class="helper-copy">Back in Section 7 you were asked what you thought might be in there that would surprise you. Now you've read one. Was anything different from what you expected?</p>
+  <p class="helper-copy">"Surprising" doesn't have to mean shocking. A clause that was much broader than you assumed, or much shorter, or that covered something you didn't think terms of use dealt with at all, all count.</p>
+  <p class="helper-copy"><em>Start with:</em> "One clause I found surprising was ___, because..."</p>
+  <textarea id="field-surprise" class="field-textarea" rows="4" placeholder="One clause I found surprising was..."></textarea>
+
+  <button type="button" class="btn btn-primary" id="save-section10-btn">Save my answers and show me the checklist</button>
+  <p class="hint" id="section10-hint" hidden>Fill in at least the app name first — the checklist and the model answer unlock once you've written your own.</p>
+  <p class="hint hint-good" id="section10-confirm" hidden>Saved in this browser. These four answers appear in your work summary in Section 12 — copy them straight into your Extended Response Sheet.</p>
+
+  <div id="section10-reveal" hidden>
+    <div class="note-box">
+      <p><strong>The page can't mark this, and won't pretend to.</strong> Everyone here is reading a different document, so there's nothing to check your answer against. What it can do is tell you exactly what a strong answer contains — and that list is the same list your teacher marks against.</p>
+      <p>Go through your four answers and tick what's genuinely there. <strong>An untick is not a fail; it's the specific thing to add before you submit.</strong></p>
+    </div>
+
+    <div class="self-check-box">
+      <h4>Check your own answers against these</h4>
+      <p><strong>For Question 5b (4 marks):</strong></p>
+      <ul class="self-check-list">
+        <li><input type="checkbox" id="tick-10-1"><label for="tick-10-1">I quoted or closely paraphrased the <strong>actual wording</strong> I found — not a guess at what it probably says</label></li>
+        <li><input type="checkbox" id="tick-10-2"><label for="tick-10-2">I found <strong>two</strong> clauses, not one</label></li>
+        <li><input type="checkbox" id="tick-10-3"><label for="tick-10-3">I named a <strong>category</strong> for each one, from the six in Section 7</label></li>
+        <li><input type="checkbox" id="tick-10-4"><label for="tick-10-4">The two clauses I picked genuinely <strong>affect data</strong> — I didn't pick two clauses about something else because they were easier to find</label></li>
+      </ul>
+      <p><strong>For Question 5c (3 marks):</strong></p>
+      <ul class="self-check-list">
+        <li><input type="checkbox" id="tick-10-5"><label for="tick-10-5">I named <strong>which specific clause</strong> I'm talking about, so a reader can tell which one without guessing</label></li>
+        <li><input type="checkbox" id="tick-10-6"><label for="tick-10-6">I said <strong>what could actually happen</strong>, concretely — not just "it affects privacy"</label></li>
+        <li><input type="checkbox" id="tick-10-7"><label for="tick-10-7">I said what happens when <strong>lots of people</strong> agree to it, not only what happens to me</label></li>
+      </ul>
+      <p><strong>For Question 6 (2 marks):</strong></p>
+      <ul class="self-check-list">
+        <li><input type="checkbox" id="tick-10-8"><label for="tick-10-8">I named a <strong>specific clause</strong>, not a general feeling about the document</label></li>
+        <li><input type="checkbox" id="tick-10-9"><label for="tick-10-9">I said <strong>why</strong> it surprised me — what I had expected instead</label></li>
+      </ul>
+    </div>
+
+    <div class="exemplar-block">
+      <h4>What a strong answer looks like</h4>
+      <p>This is a model for a different app and different clauses from yours. <strong>Don't copy it</strong> — it won't fit your document and a marker will spot it instantly. Read it for the <strong>shape</strong>: how specific it is, and how it moves from one clause to one consequence.</p>
+      <p><strong>5a. Which app?</strong> Discord.</p>
+      <p><strong>5b. Two clauses.</strong> Clause 1 says that when I upload content I "grant Discord a worldwide, non-exclusive, royalty-free licence to use, copy and display" it — that's a <strong>Content ownership</strong> clause. Clause 2 says Discord may share information with "service providers and business partners" who help operate the service — that's a <strong>Data use and sharing</strong> clause.</p>
+      <p><strong>5c. What it could mean.</strong> Take the second clause. It doesn't name the partners, so I can't actually find out who ends up with my data — only that somebody does. On my own that's a small risk. But if millions of people agree to the same clause without reading it, then a handful of companies end up holding a detailed record of how a whole generation talks to its friends, and none of those people ever made a decision about it. Over time I think that makes people assume this is just how it works and stop expecting anything different, which is a bigger problem than any single clause.</p>
+      <p><strong>6. A clause I found surprising.</strong> The one I found surprising was the licence over content I upload, because I assumed my messages and images were just mine and that the company was only storing them. Reading it properly, they've got a permanent right to use them — and I agreed to that years ago without ever seeing the sentence.</p>
+      <p>Notice three things it does that a weak answer doesn't: it <strong>quotes</strong>, it names <strong>one</strong> clause rather than gesturing at the document, and in 5c it reasons from <em>that clause</em> to <em>that consequence</em> in a chain you can follow. It's also honest about uncertainty — "I can't actually find out who" is a stronger sentence than a confident guess would have been.</p>
+    </div>
+
+    <p>Those four answers are the ones a person marks. <strong>Copy them from your work summary into your Extended Response Sheet in Canvas</strong> — it's four boxes and it's the only paper left in this lesson.</p>
+    <p>If something you read genuinely worried you, say so to your teacher. That's a reasonable thing to do and it's what the note back in Section 7 meant.</p>
+  </div>
+</section>
+
+<!-- ============ SECTION 11 ============ -->
+<section id="section-11" class="section section-p2" data-section="11">
+  <p class="section-tag optional-tag">Section 11 · Going further — optional</p>
+  <div class="section-head">
+    <h2>Going further</h2>
+    <button type="button" class="speak-btn" title="Read this section aloud" aria-label="Read this section aloud">🔊</button>
+  </div>
+
+  <p>Two open questions, one from each period. Neither has an answer key, and neither is required. They're here because they're the interesting bits.</p>
+
+  <h3>Is it fair to call GIF "lossless"?</h3>
+  <p>Back in Section 4, GIF went in the "it's complicated" bin. Here's the argument properly.</p>
+  <p>A GIF's compression step throws away <strong>no pixel data at all</strong> — decompress it and you get back exactly what was stored. But a GIF can hold only <strong>256 colours at once</strong>, so saving a photograph as a GIF throws thousands of colours away <em>before</em> the compression starts, and it looks visibly worse.</p>
+
+  <h4>Step 1 — pick a side (not marked, no correct answer)</h4>
+  <p><strong>Which side would you argue?</strong> There's no right answer here and the page won't tell you there is.</p>
+  <div class="qc-options" id="side-11a">
+    <button type="button" class="btn btn-option" data-value="yes">Yes — "lossless" is fair</button>
+    <button type="button" class="btn btn-option" data-value="no">No — calling it lossless is misleading</button>
+    <button type="button" class="btn btn-option" data-value="depends">Only if you say which step you mean</button>
+  </div>
+  <p class="hint hint-good" id="side-11a-confirm" hidden>Noted. All three are defensible. Now build the case for the one you picked.</p>
+
+  <div id="evidence-11a" hidden>
+    <h4>Step 2 — pick your evidence (auto-marked)</h4>
+    <p>Six statements, all of them <strong>true</strong>. Select the ones that support <strong>the side you just chose</strong>. This part <em>is</em> checked — not on which side you took, but on whether the evidence you picked actually argues for it. Picking a true fact that argues against your own position is the most common mistake in an argument like this.</p>
+    <div id="ms-11a" class="ms-widget"></div>
+  </div>
+
+  <div id="prose-11a" hidden>
+    <h4>Step 3 — write it (not marked, exemplars provided)</h4>
+    <p>Now write it as a paragraph: your position, your evidence, and — this is the part that separates a good answer from a list — <strong>why the other side is wrong, or why it doesn't matter.</strong></p>
+    <label class="sr-only" for="prose-11a-input">Write your GIF argument</label>
+    <textarea id="prose-11a-input" class="field-textarea" rows="5" placeholder="I think GIF is / isn't fairly called lossless, because..."></textarea>
+    <button type="button" class="btn btn-primary" id="prose-11a-btn">Save and show me two model arguments</button>
+    <p class="hint" id="prose-11a-hint" hidden>Write your argument first — the models unlock once you've committed to your own.</p>
+    <div class="exemplar-grid reveal-block" id="prose-11a-reveal" hidden>
+      <div>
+        <p><strong>Model A — arguing "lossless is fair":</strong></p>
+        <p>I think calling GIF lossless is fair, because "lossless" describes what a compression algorithm does to the data it's given, and GIF's algorithm discards nothing — decompress a GIF and every stored pixel comes back exactly. The colour loss people point to is real, but it happens in a separate step <strong>before</strong> compression, when the image is reduced to 256 colours. That's a limitation of the format's colour depth, not of its compression. If we let the colour reduction change the label, we'd have to call almost every format lossy, because nearly all of them make some choice about how much data to keep before compressing.</p>
+      </div>
+      <div>
+        <p><strong>Model B — arguing "it's misleading":</strong></p>
+        <p>I think calling GIF lossless is misleading, because the label is supposed to tell a user whether they'll get their image back, and with GIF they won't. Saving a photo as a GIF permanently destroys thousands of colours, and no software can recover them — which is exactly what "lossy" is supposed to warn you about. Saying the compression step alone is lossless is technically true and practically useless: nobody chooses a format by which sub-step discards the data, they choose it by whether their picture survives. A label that's accurate about the algorithm and wrong about the outcome is a bad label.</p>
+      </div>
+    </div>
+    <div class="self-check-box" id="selfcheck-11a" hidden>
+      <ul class="self-check-list">
+        <li><input type="checkbox" id="tick-11a-1"><label for="tick-11a-1">My paragraph names <strong>specific evidence</strong>, not just an opinion</label></li>
+        <li><input type="checkbox" id="tick-11a-2"><label for="tick-11a-2">My paragraph deals with the <strong>other side</strong> — either says why it's wrong, or why it doesn't decide the question</label></li>
+      </ul>
+      <p class="li-note">Both models are good answers. They reach opposite conclusions, and both would be marked well, because the marking is on the reasoning and not on the side. That's genuinely how this question works.</p>
+    </div>
+  </div>
+
+  <h3>A clause you think should be banned</h3>
+  <p>Go back to the terms you read in Section 10. Find one clause you think shouldn't be allowed at all.</p>
+  <p>This is the hardest question on the page, and it isn't marked by anything. It's split into three steps because a strong answer makes three moves, and it's easy to make only the first.</p>
+
+  <label class="field-label" for="ladder-1">Step 1 — Which clause? Quote or closely paraphrase it.</label>
+  <p class="helper-copy">Name it precisely enough that someone else could find it in the same document.</p>
+  <textarea id="ladder-1" class="field-textarea" rows="3" placeholder="The clause I'd ban says..."></textarea>
+
+  <label class="field-label" for="ladder-2">Step 2 — What specific harm does it do, and to whom?</label>
+  <p class="helper-copy">Not "it's bad for privacy." What could actually happen, and to which people? If it only harms people when lots of them agree at once, say that — it's a stronger point, not a weaker one.</p>
+  <textarea id="ladder-2" class="field-textarea" rows="4" placeholder="This could lead to..."></textarea>
+
+  <label class="field-label" for="ladder-3">Step 3 — Answer the obvious objection: it's legal, and people agreed to it. So on what grounds would you ban it?</label>
+  <p class="helper-copy">This is the step most answers skip, and it's the one that makes the answer worth reading. Some grounds people actually use: nobody can meaningfully consent to something they were never realistically going to read; the choice isn't free if the alternative is not using the service at all; some rights shouldn't be signable away regardless of consent; the harm falls on people who never agreed to anything.</p>
+  <textarea id="ladder-3" class="field-textarea" rows="4" placeholder="Even though people agreed to it, I'd still ban it because..."></textarea>
+
+  <button type="button" class="btn btn-primary" id="ladder-save-btn">Save my argument</button>
+  <p class="hint hint-good" id="ladder-confirm" hidden>Saved in this browser and added to your work summary.</p>
+
+  <div class="self-check-box" id="selfcheck-11b" hidden>
+    <ul class="self-check-list">
+      <li><input type="checkbox" id="tick-11b-1"><label for="tick-11b-1">Step 1 names a <strong>specific clause</strong>, quoted or closely paraphrased — not "the data bit"</label></li>
+      <li><input type="checkbox" id="tick-11b-2"><label for="tick-11b-2">Step 2 names a <strong>specific harm</strong> and says <strong>who</strong> it falls on</label></li>
+      <li><input type="checkbox" id="tick-11b-3"><label for="tick-11b-3">Step 3 actually answers the objection rather than repeating Step 2 in different words</label></li>
+    </ul>
+    <p class="li-note"><strong>Legal and ethical are different questions</strong> — and if you can say clearly <em>why</em> something legal and agreed-to should still not be allowed, you're doing the actual work of that syllabus dot point.</p>
+  </div>
+
+  <div class="key-idea p2">
+    <p>Both of those are arguments, not answers, and there is no version of this page that could mark them. What you've got instead is a record of your reasoning in your work summary — which is what a person reads.</p>
+  </div>
+</section>
+
+<!-- ============ SECTION 12 ============ -->
+<section id="section-12" class="section section-p2" data-section="12">
+  <p class="section-tag">Section 12 · Wrap-up</p>
+  <div class="section-head" id="section-12-marker">
+    <h2>Wrap-up</h2>
+    <button type="button" class="speak-btn" title="Read this section aloud" aria-label="Read this section aloud">🔊</button>
+  </div>
+
+  <p>Two periods, two ideas.</p>
+  <p><strong>Compression</strong> is shrinking a file so it's faster and cheaper to store or send — and it comes in two kinds. <strong>Lossless</strong> finds what a file says twice and stores it once, so you can recover the exact original. <strong>Lossy</strong> permanently deletes information you probably won't miss, which shrinks a file far further. Almost everything you stream, upload or share is lossy, because without it the internet you actually use wouldn't be fast enough or cheap enough to run.</p>
+  <p>A <strong>terms of use policy or EULA</strong> is a real legal agreement built from six standard kinds of clause. Clicking "I agree" is a real legal step, and when millions of people take the same step the same way, individual clauses turn into societal patterns nobody chose. You can now open a real one, skim it, and find what matters — which is more than most adults can say.</p>
+
+  <ol class="next-steps">
+    <li><strong>Add your name below and download your work summary.</strong> It has every auto-marked answer from this page — Question 1, Questions 2 and 3, Question 4 and Part B — plus your drafts for the four questions that go on the Extended Response Sheet.</li>
+    <li><strong>Open the Extended Response Sheet in Canvas</strong> and copy across your four answers from Section 10. That's Questions 5a, 5b, 5c and 6 — the only writing a teacher marks by hand.</li>
+    <li><strong>Submit both through Canvas</strong>: the downloaded work summary, and the Extended Response Sheet.</li>
+  </ol>
+
+  <div class="early-finisher">
+    <p><strong>Finished early, or want to go further?</strong> Section 11 has both open questions — whether it's fair to call GIF "lossless," and whether a clause you found should be allowed to exist at all. Neither has an answer key. Both are the interesting ones.</p>
+  </div>
+
+  <div class="summary-panel" id="summary-panel">
+    <h3>My work summary</h3>
+    <p>This isn't automatically sent to Canvas or to anyone else — it's a record of what you did on this page. <strong>Most of your worksheet is in here</strong>, already marked. The four drafts at the bottom are the ones you copy onto your Extended Response Sheet. Add your name below, then save or print it.</p>
+    <div class="summary-fields">
+      <label for="summary-name">Name<input type="text" id="summary-name" placeholder="Your name"></label>
+      <label for="summary-class">Class<input type="text" id="summary-class" placeholder="Your class"></label>
+    </div>
+    <button type="button" class="btn btn-primary" id="summary-print-btn">Save / print my summary</button>
+    <p class="hint" id="summary-name-hint">Enter your name above first — the button unlocks once it's filled in.</p>
+    <div class="summary-content" id="summary-content" aria-live="polite"></div>
+  </div>
+</section>
+
+</main>
+
+<footer class="page-footer">
+  <div class="wrap">
+    <p>Your progress on this page is stored only in this browser, on this device. Nothing is sent anywhere, and nothing on this page marks itself into Canvas. Download your work summary in Section 12 before you finish.</p>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
