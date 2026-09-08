@@ -681,6 +681,7 @@ textarea:focus, input[type="text"]:focus, select:focus {
 .summary-list li { margin-bottom: 4px; }
 .summary-subnote { margin: 4px 0 0 0; color: var(--ink-muted); }
 .summary-footer-note { font-size: 0.9rem; color: var(--ink-muted); margin: 18px 0 0; font-weight: 700; }
+.summary-warning { background: #FFF0F0; border: 2px solid var(--red); border-radius: var(--radius); padding: 10px 14px; margin: 8px 0 12px; }
 
 /* Everything except the summary panel is hidden when printing.
    `display: none` (not `visibility: hidden`) on every other section — a hidden-but-
@@ -699,6 +700,7 @@ textarea:focus, input[type="text"]:focus, select:focus {
 /* ---------- footer ---------- */
 .page-footer { background: var(--ink-deep); color: #B7A7FF; padding: 22px 0; margin-top: 34px; font-size: 0.88rem; }
 .page-footer p { margin: 0; }
+.page-footer .page-version { margin-top: 8px; opacity: 0.6; font-size: 0.8rem; }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }

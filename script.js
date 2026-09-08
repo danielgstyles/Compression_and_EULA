@@ -1418,7 +1418,7 @@
     var c = chosen.toLowerCase();
     if (i === 0) return c === 'lossless' ? 'The wrong way round. Lossless can’t shrink audio or video anywhere near enough to stream — that’s why FLAC is far bigger than MP3. Streaming needs <strong>lossy</strong>.' : 'Blank 1 is the kind of compression streaming uses: <strong>lossy</strong>.';
     if (i === 1) return c === 'storage' ? 'Close, and storage does matter to a streaming company — but the sentence says "to send," and the word for how much data a connection can carry is <strong>bandwidth</strong>. Storage is about keeping data; bandwidth is about moving it.' : 'Blank 2 is the resource used up by <em>sending</em> — <strong>bandwidth</strong>.';
-    if (i === 2) return c === 'slower' ? 'A smaller file loads <strong>faster</strong>, not slower. That’s the whole point. This is the misconception the scaffolded worksheet’s True/False check targets too.' : 'Blank 3 is what a smaller file does to loading time: <strong>faster</strong>.';
+    if (i === 2) return c === 'slower' ? 'A smaller file loads <strong>faster</strong>, not slower. That’s the whole point — it’s an easy word to get backwards, so double-check it.' : 'Blank 3 is what a smaller file does to loading time: <strong>faster</strong>.';
     return c === 'larger' ? '"Larger to run" doesn’t mean anything, and larger is the opposite of what compression does. Less bandwidth used means <strong>cheaper</strong> to run.' : 'Blank 4 is the money side of using less bandwidth: <strong>cheaper</strong>.';
   }
   function initSection6e() {
@@ -1908,7 +1908,7 @@
     var who = escapeHtml(state.studentName || '(name not entered)') + (state.studentClass ? ' — ' + escapeHtml(state.studentClass) : '');
     var html = '<h4>' + who + '</h4>';
     html += '<p class="summary-meta">Lessons 9–10 — Data Compression and Terms of Use/EULA. Printed ' + new Date().toLocaleDateString('en-AU') +
-      '. Questions 1, 2, 3, 4 and Part B below are complete. Questions 5 and 6 go on the Extended Response Sheet.</p>';
+      '. This is the whole worksheet — Questions 1, 2, 3, 4 and Part B are auto-marked below; Questions 5 and 6 are the written answers a teacher marks by hand.</p>';
 
     // 3. commit answer
     html += '<h5>What did the computer do to the file? (your first answer)</h5><p>' + (state.commitText ? escapeHtml(state.commitText) : 'Not answered yet.') + '</p>';
@@ -2016,8 +2016,11 @@
     html += '<li>Streak drill: ' + ((state.s9b.doneIds || []).length) + ' of ' + STREAK_CLAUSES.length + ' clauses answered correctly</li>';
     html += '</ul>';
 
-    // 14. FOR YOUR EXTENDED RESPONSE SHEET
-    html += '<h5 class="extended-heading">FOR YOUR EXTENDED RESPONSE SHEET — Questions 5 and 6 (10 marks, not marked here)</h5>';
+    // 14. QUESTIONS 5 AND 6 — written by hand, not auto-marked
+    html += '<h5 class="extended-heading">QUESTIONS 5 AND 6 — the ones a person marks (10 marks, not auto-marked)</h5>';
+    if (!state.s10.saved) {
+      html += '<p class="summary-warning"><strong>Not saved yet.</strong> Go back to Section 10 and press "Save my answers" before you submit this summary — otherwise a teacher will see "Not written yet" below, even if you\'ve actually written something in the boxes on the page.</p>';
+    }
     html += '<p class="summary-subnote"><strong>5a. Which app:</strong> ' + (state.s10.app ? escapeHtml(state.s10.app) : 'Not written yet.') + '</p>';
     html += '<p class="summary-subnote"><strong>5b. Two clauses:</strong> ' + (state.s10.clauses ? escapeHtml(state.s10.clauses) : 'Not written yet.') + '</p>';
     html += '<p class="summary-subnote"><strong>5c. What it could mean:</strong> ' + (state.s10.meaning ? escapeHtml(state.s10.meaning) : 'Not written yet.') + '</p>';
@@ -2039,7 +2042,7 @@
     }
 
     // 16. closing note
-    html += '<p class="summary-footer-note">Everything above except the last two sections is complete and marked. Copy the four answers under "FOR YOUR EXTENDED RESPONSE SHEET" onto that sheet in Canvas, and submit both.</p>';
+    html += '<p class="summary-footer-note">This summary is the whole submission — there is no separate sheet. Everything above except the last two (optional) sections is either auto-marked, or is the written answer to Questions 5 and 6 that a teacher marks by hand.</p>';
 
     out.innerHTML = html;
   }
